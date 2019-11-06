@@ -1,0 +1,21 @@
+version: "3"
+services:
+  library:
+    image: sdustakar/library:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - sdustakar_network
+    depends_on:
+      - mysqldb
+ 
+  mysqldb:
+    image: mysql:latest
+    networks:
+      - sdustakar_network
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=quizdb
+
+networks:
+  sdustakar_network: 
